@@ -54,10 +54,7 @@ for mapset in "$1"/*; do
 
             # remove Windows's carriage return symbol to make cp work 😮‍💨;
             # this is a Bash script, not a CMD script
-            songfile=$(echo "${songfile}" | sed -e 's/\r//g')
-            # This ^ is a sed removal blocker, idk how to get rid of it 
-            # so we're staying dependant on sed throughout the script
-            # for the sake of making it shorter
+            songfile=${songfile//$(echo -e "\r")/}
 
             # path to the final exported song file
             outputfile="$2${mapset#"$1"}.${songfile#*.}"
