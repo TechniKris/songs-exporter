@@ -1,7 +1,6 @@
 -----------------
 DEPS:
-bash, coreutils (cp), sed,
-future: mid3v2
+bash, coreutils
 
 -----------------
 KNOWN ISSUES:
