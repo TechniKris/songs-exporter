@@ -7,15 +7,6 @@ se_version="0.0.1"
 # -----------------
 # OPTIONS:
 
-# tag files (default=true)
-# ^ will overwrite files' existing tags (artist name, title, etc.) with osu!'s;
-# recommended since osu!'s tags are usually more consistent
-tag=true
-
-# allow for Unicode tags (default=false)  <---------------- WIP
-# ^ enable if you know Japanese KEKW
-useUnicode=false
-
 # -----------------
 # FUNCTIONS:
 # TODO .osu metadata/tags extractor
@@ -75,37 +66,6 @@ for mapset in "$1"/*; do
             # copy the song file to the target directory, renamed appropriately.
             cp "${mapset}/${songfile}" "${outputfile}"
 
-
-#            # songfile tagging: <---------------- WIP
-#            if [ "${tag}" == true ]; then
-#
-#                # in the beatmap file find the author and title of the song...
-#                # STARTING SPACE HANDLING <---------------------------------- TODO (usually no space; hardcoded for now)
-#                title=$(sed 's/Title://;t;d' "${file}")
-#                artist=$(sed 's/Artist://;t;d' "${file}")
-#
-#                # Unicode version check
-#                titleUnicode=
-#                artistUnicode=
-#                if [ "${useUnicode}" == true ]; then
-#                    titleUnicode=$(sed 's/TitleUnicode://;t;d' "${file}")
-#                    artistUnicode=$(sed 's/ArtistUnicode://;t;d' "${file}")
-#
-#                    if [ -n "${titleUnicode}" ]; then
-#                        title="${titleUnicode}"
-#                    fi
-#                    if [ -n "${artistUnicode}" ]; then
-#                        artist="${artistUnicode}"
-#                    fi
-#                fi
-#
-#
-#                # ...and set these as tags for the output song file, using mid3v2 <---------------- TODO
-#                echo "Title:  ${title}"
-#
-#
-#                echo "Artist: ${artist}"
-#            fi
 
             # currently only handles a single song per mapset <---------------- TODO
             break
