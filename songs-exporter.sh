@@ -43,14 +43,14 @@ for mapset in "$1"/*; do
             # in the beatmap file find the name of the corresponding songfile
 
             # STARTING SPACE HANDLING <---------------------------------- TODO (usually with space; hardcoded for now)
-            songfile=$(sed 's/AudioFilename: //;t;d' "${file}")
-#            # non-sed equivalent for reference, in case I want to use it instead
-#            while read -r line; do
-#                if [[ "${line}" == "AudioFilename: "* ]]; then
-#                    songfile="${line#"AudioFilename: "}"
-#                    break
-#                fi
-#            done < "${file}"
+#            songfile=$(sed 's/AudioFilename: //;t;d' "${file}")
+#            # above - sed equivalent for reference
+            while read -r line; do
+                if [[ "${line}" == "AudioFilename: "* ]]; then
+                    songfile="${line#"AudioFilename: "}"
+                    break
+                fi
+            done < "${file}"
 
             # remove Windows's carriage return symbol to make cp work 😮‍💨;
             # this is a Bash script, not a CMD script
