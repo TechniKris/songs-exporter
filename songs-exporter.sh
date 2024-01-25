@@ -1,28 +1,20 @@
 #!/bin/bash
 
-# Songs exporter
-# version:
-se_version="0.0.1"
-
 # -----------------
 # OPTIONS:
 
 # -----------------
 # FUNCTIONS:
-# TODO .osu metadata/tags extractor
 
 # -----------------
-# MAIN BODY OF THE SCRIPT:
-
-# help and version
+# HELP
 if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
     echo "Usage:
 $0 <beatmaps-dir> <output-dir>"
     exit 0
-elif [ "$1" == "--version" ] || [ "$1" == "-v" ]; then
-    echo "Songs-Exporter v${se_version}"
-    exit 0
-fi
+
+# -----------------
+# MAIN BODY OF THE SCRIPT:
 
 # search through every mapset in the directory
 for mapset in "$1"/*; do
@@ -33,9 +25,7 @@ for mapset in "$1"/*; do
 
             # in the beatmap file find the name of the corresponding songfile
 
-            # STARTING SPACE HANDLING <---------------------------------- TODO (usually with space; hardcoded for now)
-#            songfile=$(sed 's/AudioFilename: //;t;d' "${file}")
-#            # above - sed equivalent for reference
+            # STARTING SPACE HANDLING <----- TODO (usually with space; hardcoded for now)
             while read -r line; do
                 if [[ "${line}" == "AudioFilename: "* ]]; then
                     songfile="${line#"AudioFilename: "}"
@@ -67,7 +57,7 @@ for mapset in "$1"/*; do
             cp "${mapset}/${songfile}" "${outputfile}"
 
 
-            # currently only handles a single song per mapset <---------------- TODO
+            # currently only handles a single song per mapset <----- TODO
             break
 
         fi
