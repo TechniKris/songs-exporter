@@ -12,6 +12,7 @@ if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
     echo "Usage:
 $0 <beatmaps-dir> <output-dir>"
     exit 0
+fi
 
 # -----------------
 # MAIN BODY OF THE SCRIPT:
