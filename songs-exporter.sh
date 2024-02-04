@@ -25,11 +25,14 @@ for mapset in "$1"/*; do
         if [[ "${file}" == *".osu" ]]; then
 
             # in the beatmap file find the name of the corresponding songfile
-
-            # STARTING SPACE HANDLING <----- TODO (usually with space; hardcoded for now)
             while read -r line; do
-                if [[ "${line}" == "AudioFilename: "* ]]; then
-                    songfile="${line#"AudioFilename: "}"
+                if [[ "${line}" == "AudioFilename:"* ]]; then
+                    songfile="${line#"AudioFilename:"}"
+                    
+                    # in case there was a space at the start (there usually is)
+                    if [[ "${songfile}" == " "* ]]; then
+                        songfile="${songfile#" "}"
+                    fi
                     break
                 fi
             done < "${file}"
