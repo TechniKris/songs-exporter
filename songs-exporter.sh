@@ -41,18 +41,6 @@ for mapset in "$1"/*; do
             # path to the final exported song file
             outputfile="$2${mapset#"$1"}.${songfile#*.}"
 
-#            # DEBUG
-#            echo "Dir path:                      $1"
-#            echo "Map path:                      ${mapset}"
-#            # ^ might contain double slashes, depending on $1
-#            echo "Songfile:                      ${songfile}"
-#            echo "Extension:                     ${songfile#*.}"
-#            echo "Map name (with leading slash): ${mapset#"$1"}"
-#            echo "Target dir:                    $2"
-#            echo "Output file:                   ${outputfile}"
-#            # ^ might contain double slashes, depending on $2
-#            echo ""
-
 
             # copy the song file to the target directory, renamed appropriately.
             cp "${mapset}/${songfile}" "${outputfile}"
